@@ -14,7 +14,7 @@ pipeline {
                     script{
 
                     
-                    final string  response = bat(script: """
+                    final String  response = bat(script: """
                         curl -X GET ${apiUrl}
                     """, returnStdout: true).trim()
                     }
