@@ -14,7 +14,7 @@ pipeline {
                     def repoName = 'Jenkins_Branch_Stage'
                     def commitSha = '4faf09a2fca5f88905542274bc2508'
 
-                    def apiUrl = "  https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/pulls"
+                    def apiUrl = "https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/commits/3cdbcaf/pulls"
 
                     def response = bat(script: """
                         curl -X GET ${apiUrl}
