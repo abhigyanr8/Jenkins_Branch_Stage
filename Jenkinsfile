@@ -1,13 +1,5 @@
 pipeline {
     agent any
-
-    stages {
-        stage('dev')
-         {
-            steps{
-             echo 'Hello Dev'
-            }
-         }
         stage('Get Pull Request for Commit') {
             steps {
                 script {
@@ -20,7 +12,7 @@ pipeline {
 
                     def response = bat(script: """
                         curl -X GET ${apiUrl}
-                    """, returnStatus: false).trim()
+                    """, returnStatus: false)
 
                     echo "Response from curl: ${response}"
 
