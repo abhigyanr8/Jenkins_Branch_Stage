@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('dev')
          {
-            echo 'Hello Dev'
+            steps{
+             echo 'Hello Dev'
+            }
          }
         stage('Get Pull Request for Commit') {
             steps {
