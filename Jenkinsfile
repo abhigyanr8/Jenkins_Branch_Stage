@@ -14,7 +14,7 @@ pipeline {
 
                     def response = bat(script: """
                         curl -X GET ${apiUrl}
-                    """, returnStatus: false).trim()
+                    """, returnStatus: false)
 
                     echo "Response from curl: ${response}"
 
