@@ -21,7 +21,8 @@ pipeline {
 
                     try {
                         // Try parsing the JSON string
-                        def json = readJSON text: response
+                       def pullRequests = new groovy.json.JsonSlurper().parseText(response)
+
 
                         if (pullRequests.size() > 0) {
                             def prNumber = pullRequests[0].number
