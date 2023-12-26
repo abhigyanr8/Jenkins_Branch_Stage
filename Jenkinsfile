@@ -12,13 +12,13 @@ pipeline {
 
                     def apiUrl = "  https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/commits/3cdbcaf/pulls"
                     
-
+                    def response
                     
-                    def  response = bat(script: """
+                     response = bat(script: """
                         curl -X GET ${apiUrl}
                     """, returnStdout: true).trim()
 
-                     echo response
+                    
                      def parser = new JsonSlurper()
                      def json = parser.parseText(response)
                     
