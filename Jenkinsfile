@@ -21,7 +21,7 @@ pipeline {
                      echo response
                     }
 
-                    echo "Response from curl: ${response}"
+                    //echo "Response from curl: ${response}"
 
                     // Parse JSON response
                     def pullRequests = readJSON text: response
