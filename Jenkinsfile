@@ -17,6 +17,8 @@ pipeline {
                     final String  response = bat(script: """
                         curl -X GET ${apiUrl}
                     """, returnStdout: true).trim()
+
+                     echo response
                     }
 
                     echo "Response from curl: ${response}"
