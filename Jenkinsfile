@@ -33,7 +33,9 @@ pipeline {
 
                         if (pullRequests.size() > 0) {
                             def prNumber = pullRequests[0].number
+                            def branch = pullRequests[0].base.ref
                             echo "Pull Request associated with commit: ${prNumber}"
+                            echo "Pull Request associated with commit: ${branch}"
                         } else {
                             echo "No pull request found for the commit."
                         }
