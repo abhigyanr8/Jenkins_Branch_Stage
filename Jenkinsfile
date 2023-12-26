@@ -23,8 +23,7 @@ pipeline {
 
                     try {
                         // Try parsing the JSON string
-                        def parser = new JsonSlurper()
-                        def pullRequests = parser.parseText(response)
+                        def json = readJSON text: response
 
                         if (pullRequests.size() > 0) {
                             def prNumber = pullRequests[0].number
