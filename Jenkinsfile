@@ -5,7 +5,7 @@ pipeline {
         stage('Get Pull Request for Commit') {
             steps {
                 script {
-                    def githubToken = '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'
+                    def githubToken = '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'
                     def repoOwner = 'abhigyanr8'
                     def repoName = 'Jenkins_Branch_Stage'
                     def commitSha = '4faf09a2fca5f88905542274bc2508'
