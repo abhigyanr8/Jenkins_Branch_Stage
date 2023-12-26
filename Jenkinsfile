@@ -11,11 +11,14 @@ pipeline {
                     def commitSha = '4faf09a2fca5f88905542274bc2508'
 
                     def apiUrl = "https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/commits/3cdbcaf/pulls"
-                    def response = bat(script: """
-                        curl -s ${apiUrl} > response.json
-                    """, returnStatus: false).trim()
+                        bat '''
+                    @echo off
+                  
 
-                    echo "Response from curl: ${response}"
+                    REM Execute cURL command without Bearer token
+                    curl -X GET %apiUrl% > response.txt
+                    type response.txt
+                '''
 
                     // Parse JSON response
                     def pullRequests = readJSON text: response
