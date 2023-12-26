@@ -1,5 +1,5 @@
 #!/usr/bin/groovy
-@Library('HTTP-Request') 
+@Library('HTTP-Request') _
 
 pipeline {
     agent any
