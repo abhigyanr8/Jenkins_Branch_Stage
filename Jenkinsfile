@@ -13,7 +13,7 @@ pipeline {
                     def apiUrl = "  https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/pulls"
 
                     def response = bat(script: """
-                        curl -s -H "Authorization: Bearer ${githubToken}" ${apiUrl}
+                        curl -X GET ${apiUrl}
                     """, returnStatus: false).trim()
 
                     echo "Response from curl: ${response}"
