@@ -19,6 +19,8 @@ pipeline {
                     """, returnStdout: true).trim()
 
                      echo response
+                     def parser = new JsonSlurper()
+                     def json = parser.parseText(response)
                     
 
                     //echo "Response from curl: ${response}"
