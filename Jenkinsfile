@@ -17,21 +17,22 @@ pipeline {
                      response = bat(script: """
                         curl -X GET ${apiUrl}
                     """, returnStdout: true).trim()
+                    echo "Raw response: ${response}" // Print the raw response for debugging
 
-                    
-                    
-                    
+                    try {
+                        // Try parsing the JSON string
+                        def parser = new JsonSlurper()
+                        def pullRequests = parser.parseText(response)
 
-                    //echo "Response from curl: ${response}"
-
-                    // Parse JSON response
-                    def pullRequests = readJSON text: response
-
-                    if (pullRequests.size() > 0) {
-                        def prNumber = pullRequests[0].number
-                        echo "Pull Request associated with commit: ${prNumber}"
-                    } else {
-                        echo "No pull request found for the commit."
+                        if (pullRequests.size() > 0) {
+                            def prNumber = pullRequests[0].number
+                            echo "Pull Request associated with commit: ${prNumber}"
+                        } else {
+                            echo "No pull request found for the commit."
+                        }
+                    } catch (Exception e) {
+                        echo "Error parsing JSON: ${e.message}"
+                        // Handle the exception or add more debugging information as needed
                     }
                 }
             }
