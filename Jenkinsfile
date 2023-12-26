@@ -11,14 +11,9 @@ pipeline {
                     def commitSha = '4faf09a2fca5f88905542274bc2508'
 
                     def apiUrl = "https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/commits/3cdbcaf/pulls"
-                        def response = powershell(returnStatus: true, script: """
-                        \$token = "${githubToken}"
-                        \$url = "${apiUrl}"
-                        \$headers = @{"Authorization"="Bearer \$token"}
-
-                        \$response = Invoke-RestMethod -Uri \$url -Method Get -Headers \$headers
-                        Write-Output (\$response | ConvertTo-Json)
-                    """)
+                    def response = bat(script: """
+                        curl -s ${apiUrl} > response.json
+                    """, returnStatus: false).trim()
 
                     echo "Response from curl: ${response}"
 
