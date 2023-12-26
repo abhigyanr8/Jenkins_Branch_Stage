@@ -2,6 +2,10 @@ pipeline {
     agent any
 
     stages {
+        stage('dev')
+         {
+            echo 'Hello Dev'
+         }
         stage('Get Pull Request for Commit') {
             steps {
                 script {
@@ -10,9 +14,10 @@ pipeline {
                     def repoName = 'Jenkins_Branch_Stage'
                     def commitSha = '4faf09a2fca5f88905542274bc2508'
 
-                    def apiUrl = "https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/commits/3cdbcaf/pulls"
+                    def apiUrl = "  https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/pulls"
+
                     def response = bat(script: """
-                        curl -s ${apiUrl} > response.json
+                        curl -X GET ${apiUrl}
                     """, returnStatus: false).trim()
 
                     echo "Response from curl: ${response}"
