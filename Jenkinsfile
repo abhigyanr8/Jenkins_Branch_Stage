@@ -1,3 +1,4 @@
+#!/usr/bin/groovy
 @Library('HTTP-Request') 
 
 pipeline {
