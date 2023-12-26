@@ -17,11 +17,18 @@ pipeline {
                      response = bat(script: """
                         curl -X GET ${apiUrl}
                     """, returnStdout: true).trim()
-                    echo "Raw response: ${response}" // Print the raw response for debugging
+                    echo "Raw response: ${response}" 
+                    // Print the raw response for debugging
+
+                    def jsonResponse = response.substring(response.indexOf("["))
+                   echo "Raw response: ${jsonResponse}"
+                  
 
                     try {
+                         def parser = new groovy.json.JsonSlurper()
+                         def pullRequests = parser.parseText(jsonResponse)
                         // Try parsing the JSON string
-                       def pullRequests = new groovy.json.JsonSlurper().parseText(response)
+                      // def pullRequests = new groovy.json.JsonSlurper().parseText(response)
 
 
                         if (pullRequests.size() > 0) {
