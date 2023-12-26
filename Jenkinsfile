@@ -12,9 +12,9 @@ pipeline {
 
                     def apiUrl = "https://api.github.com/repos/${repoOwner}/${repoName}/commits/${commitSha}/pulls"
 
-                    def response = sh(script: """
-                        curl -s -H 'Authorization: Bearer ${githubToken}' ${apiUrl}
-                    """, returnStdout: true).trim()
+                  bat """
+                        curl -s -H "Authorization: Bearer ${githubToken}" ${apiUrl} > response.json
+                    """
 
                     // Parse JSON response
                     def pullRequests = readJSON text: response
