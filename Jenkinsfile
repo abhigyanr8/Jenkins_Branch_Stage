@@ -2,6 +2,10 @@ pipeline {
     agent any
 
     stages {
+        stage('dev')
+         {
+            echo 'Hello Dev'
+         }
         stage('Get Pull Request for Commit') {
             steps {
                 script {
