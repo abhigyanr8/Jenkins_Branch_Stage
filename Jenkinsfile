@@ -5,9 +5,9 @@ pipeline {
         stage('Get Pull Request for Commit') {
             steps {
                 script {
-                    def githubToken = 'your-github-token'
-                    def repoOwner = 'your-repo-owner'
-                    def repoName = 'your-repo-name'
+                    def githubToken = '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'
+                    def repoOwner = 'abhigyanr8'
+                    def repoName = 'Jenkins_Branch_Stage'
                     def commitSha = '4faf09a2fca5f88905542274bc2508'
 
                     def apiUrl = "https://api.github.com/repos/${repoOwner}/${repoName}/commits/${commitSha}/pulls"
