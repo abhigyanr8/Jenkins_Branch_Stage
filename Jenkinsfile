@@ -32,8 +32,3 @@ pipeline {
         }
     }
 }
- curl -L \
->   -H "Accept: application/vnd.github+json" \
->   -H "Authorization: Bearer <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>" \ 
->   -H "X-GitHub-Api-Version: 2022-11-28" \  
->   https://api.github.com/repos/OWNER/REPO/pulls
