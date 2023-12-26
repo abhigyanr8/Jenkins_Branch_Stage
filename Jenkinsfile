@@ -23,7 +23,7 @@ pipeline {
 }
 
 def getPullRequestDetails(githubApiUrl, githubToken, commitSha) {
-    def apiUrl = "${githubApiUrl}?head=your-repo-owner:master&state=all"  // Adjust the 'head' parameter accordingly
+    def apiUrl = "${githubApiUrl}?head=abhigyanr8:master&state=all"  // Adjust the 'head' parameter accordingly
 
     def response = httpRequest(
         httpMode: 'GET',
