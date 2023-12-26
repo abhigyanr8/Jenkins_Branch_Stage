@@ -11,10 +11,13 @@ pipeline {
                     def commitSha = '4faf09a2fca5f88905542274bc2508'
 
                     def apiUrl = "  https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/pulls"
+                    script{
 
-                    def response = bat(script: """
+                    
+                    final string  response = bat(script: """
                         curl -X GET ${apiUrl}
-                    """, returnStdout: true)
+                    """, returnStdout: true).trim()
+                    }
 
                     echo "Response from curl: ${response}"
 
