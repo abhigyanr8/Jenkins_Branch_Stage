@@ -2,10 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('dev')
-         {
-            echo 'Hello Dev'
-         }
+         satge('Hello')
+        {
+            steps{
+                 echo 'Hello Dev'
+            }
+        }
         stage('Get Pull Request for Commit') {
             steps {
                 script {
@@ -14,22 +16,38 @@ pipeline {
                     def repoName = 'Jenkins_Branch_Stage'
                     def commitSha = '4faf09a2fca5f88905542274bc2508'
 
-                    def apiUrl = "  https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/pulls"
-
-                    def response = bat(script: """
+                    def apiUrl = "  https://api.github.com/repos/abhigyanr8/Jenkins_Branch_Stage/commits/3cdbcaf/pulls"
+                    
+                    def response
+                    
+                     response = bat(script: """
                         curl -X GET ${apiUrl}
-                    """, returnStatus: false).trim()
+                    """, returnStdout: true).trim()
+                    echo "Raw response: ${response}" 
+                    // Print the raw response for debugging
 
-                    echo "Response from curl: ${response}"
+                    def jsonResponse = response.substring(response.indexOf("["))
+                   echo "Raw response: ${jsonResponse}"
+                  
 
-                    // Parse JSON response
-                    def pullRequests = readJSON text: response
+                    try {
+                         def parser = new groovy.json.JsonSlurper()
+                         def pullRequests = parser.parseText(jsonResponse)
+                        // Try parsing the JSON string
+                      // def pullRequests = new groovy.json.JsonSlurper().parseText(response)
 
-                    if (pullRequests.size() > 0) {
-                        def prNumber = pullRequests[0].number
-                        echo "Pull Request associated with commit: ${prNumber}"
-                    } else {
-                        echo "No pull request found for the commit."
+
+                        if (pullRequests.size() > 0) {
+                            def prNumber = pullRequests[0].number
+                            def branch = pullRequests[0].base.ref
+                            echo "Pull Request associated with commit: ${prNumber}"
+                            echo "Base branch of pull request: ${branch}"
+                        } else {
+                            echo "No pull request found for the commit."
+                        }
+                    } catch (Exception e) {
+                        echo "Error parsing JSON: ${e.message}"
+                        // Handle the exception or add more debugging information as needed
                     }
                 }
             }
