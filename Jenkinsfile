@@ -5,8 +5,8 @@ pipeline {
          stage('To check whether PR Raised on Develop Branch') {
             steps {
                 script {
-                    def extractOrgAndRepo = { gitUrl ->
-                        def matcher = gitUrl =~ /https?:\/\/github\.com\/([^\/]+)\/([^\/]+)\.git/
+                   def extractOrgAndRepo = { gitUrl ->
+                        def matcher = gitUrl =~ /https?:\/\/github\.anaplan\.com[\/:](.+?)\/(.+?)\.git/
                         return matcher ? [matcher[0][1], matcher[0][2]] : [null, null]
                     }
                     def gitUrl ="https://github.anaplan.com/core-platform/core-sizing.git"
