@@ -18,6 +18,9 @@ pipeline {
 
             }
         }
+         }
+    }
+}
         // stage('Get Pull Request for Commit') {
         //     steps {
         //         script {
