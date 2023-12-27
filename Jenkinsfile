@@ -15,7 +15,6 @@ pipeline {
                         PR_ON_DEVELOP=true;
                         echo "PR Details: ${PR_ON_DEVELOP}"
                     }
-
             }
         }
          }
@@ -65,5 +64,3 @@ pipeline {
         //         }
         //     }
         // }
-    }
-}
